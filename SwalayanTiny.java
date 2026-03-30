@@ -1,19 +1,21 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-
 public class SwalayanTiny {
-    static ArrayList<Akun> akunList = new ArrayList<>();
+
+    static ArrayList<Main> akunList = new ArrayList<>();
+
     static Scanner input = new Scanner(System.in);
-    static Akun akunAktif = null;
+
+    static Main akunAktif = null;
     static int percobaanGlobal = 0;
     static String nopelTerakhir = null;
 
     public static void main(String[] args) {
 
-        akunList.add(new Akun("3812345678", "Reva Razania", "2716", 500000, "Silver"));
-        akunList.add(new Akun("5612345678", "Vanini Aulia", "5649", 2000000, "Gold"));
-        akunList.add(new Akun("7412345678", "Andini Cahya", "1905", 5000000, "Platinum"));
-        akunList.add(new Akun("5602062005", "Nadira Yusha", "1667", 1500000, "Gold"));
+        akunList.add(new Main("3812345678", "Reva Razania", "2716", 500000, "Silver"));
+        akunList.add(new Main("5612345678", "Vanini Aulia", "5649", 2000000, "Gold"));
+        akunList.add(new Main("7412345678", "Andini Cahya", "1905", 5000000, "Platinum"));
+        akunList.add(new Main("5602062005", "Nadira Yusha", "1667", 1500000, "Gold"));
 
         System.out.println("==== SWALAYAN TINY ====");
 
@@ -21,7 +23,7 @@ public class SwalayanTiny {
             System.out.print("Masukkan nomor pelanggan: ");
             String nopel = input.nextLine();
             
-            Akun akun = cariAkun(nopel);
+            Main akun = cariAkun(nopel);
             
             if (akun == null) {
                 System.out.println("Nomor pelanggan tidak ditemukan");
@@ -54,7 +56,6 @@ public class SwalayanTiny {
                     percobaanGlobal++;
                     if (percobaanGlobal < 3) {
                         System.out.println("PIN salah. Percobaan ke-" + percobaanGlobal);
-                        break;
                     }
                 }
             }
@@ -185,8 +186,8 @@ public class SwalayanTiny {
         }
     }
     
-    static Akun cariAkun(String nopel) {
-        for (Akun a : akunList) {
+    static Main cariAkun(String nopel) {
+        for (Main a : akunList) {
             if (a.nopel.equals(nopel)) {
                 return a;
             }
@@ -196,19 +197,5 @@ public class SwalayanTiny {
     
     static String formatRupiah(double angka) {
         return String.format("%,.0f", angka).replace(",", ".");
-    }
-}
-
-class Akun {
-    String nopel, nama, pin, jenis;
-    double saldo;
-    boolean aktif = true;
-    
-    Akun(String nopel, String nama, String pin, double saldo, String jenis) {
-        this.nopel = nopel;
-        this.nama = nama;
-        this.pin = pin;
-        this.saldo = saldo;
-        this.jenis = jenis;
     }
 }
